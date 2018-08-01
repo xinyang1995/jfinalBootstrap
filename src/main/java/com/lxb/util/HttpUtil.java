@@ -12,6 +12,9 @@ import java.util.Map.Entry;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * Http请求工具类
  * 
@@ -19,7 +22,9 @@ import javax.servlet.http.HttpServletRequest;
  * @author LXB
  */
 public class HttpUtil {
-	
+
+	private static Logger log = LoggerFactory.getLogger(HttpUtil.class);
+
 	/** 设置请求和传输超时时间 */
 	static int connect_timeout = 10 * 60 * 1000;
 	/** 定义编码格式 UTF-8 */
@@ -52,7 +57,7 @@ public class HttpUtil {
 			response = buffer.toString();
 			in.close();
 		} catch (IOException e) {
-			LogsUtil.error(HttpUtil.class,"", e);
+			log.error(e.getMessage());
 		} finally {
 			if (conn != null)
 				conn.disconnect();

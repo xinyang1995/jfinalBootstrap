@@ -5,6 +5,9 @@ import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.jfinal.aop.Interceptor;
 import com.jfinal.aop.Invocation;
 import com.jfinal.core.Controller;
@@ -16,16 +19,18 @@ import com.lxb.entity.OperateLog;
 import com.lxb.entity.SysGroup;
 import com.lxb.entity.SysUser;
 import com.lxb.util.HttpUtil;
-import com.lxb.util.LogsUtil;
 
 public class GlobalInterceptor implements Interceptor {
+
+	private static Logger log = LoggerFactory
+			.getLogger(GlobalInterceptor.class);
 
 	@SuppressWarnings("unchecked")
 	public void intercept(Invocation i) {
 		Controller c = i.getController();// 获取Action调用的controller对象
 		HttpServletRequest request = c.getRequest();
 		if (null == c.getSession().getAttribute(GlobalConfig.SESSION_USER)) {
-			LogsUtil.info(GlobalInterceptor.class,"未登录...");
+			log.info("未登录...");
 			c.renderFreeMarker("/WEB-INF/template/login_pc.html");
 			return;
 		}
@@ -34,7 +39,7 @@ public class GlobalInterceptor implements Interceptor {
 		SysGroup group = (SysGroup) c.getSession()
 				.getAttribute(GlobalConfig.SESSION_USER_GROUP);
 		String accessName = i.getActionKey();// 获取Action调用的action key值
-		LogsUtil.info(GlobalInterceptor.class,accessName + "开始...");
+		log.info(accessName + "开始...");
 		Permission p = i.getMethod().getAnnotation(Permission.class);// 能够被当前拦截器拦下来的肯定会有Permission注解,不用判断非空
 		PermissionInfo pi = RouteConfig.allAuth.get(p.id() + "");
 
@@ -47,7 +52,7 @@ public class GlobalInterceptor implements Interceptor {
 		} else if (userAuthSet.contains("" + pi.getId())) {// 普通用户需要进行判断
 			doInvocation(i);// 执行具体的业务方法
 		} else {
-			LogsUtil.info(GlobalInterceptor.class,"访问" + accessName + "没有权限,用户:"
+			log.info("访问" + accessName + "没有权限,用户:"
 					+ loginUser.getStr("userName"));
 			c.renderText("permission_limit");// 没有权限
 			return;
@@ -61,7 +66,7 @@ public class GlobalInterceptor implements Interceptor {
 		operateLog.set("date", new Date());
 		operateLog.set("params", HttpUtil.getAllRequestParams(request));
 		operateLog.save();
-		LogsUtil.info(GlobalInterceptor.class,accessName + "结束...");
+		log.info(accessName + "结束...");
 	}
 
 	private void doInvocation(Invocation i) {
@@ -69,7 +74,7 @@ public class GlobalInterceptor implements Interceptor {
 			i.invoke();
 		} catch (Exception e) {
 			// 全局异常统一处理
-			LogsUtil.error(GlobalInterceptor.class,i.getActionKey(), e);
+			log.error(i.getActionKey(), e);
 			i.getController().setAttr("error", e);
 			i.getController().renderFreeMarker("/WEB-INF/template/500.html");
 		}

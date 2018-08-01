@@ -11,13 +11,15 @@ import java.util.Map;
 import java.util.Set;
 import java.util.TreeMap;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.alibaba.fastjson.JSONObject;
 import com.jfinal.config.Routes;
 import com.jfinal.core.Controller;
 import com.lxb.annotation.Permission;
 import com.lxb.annotation.RouteBind;
 import com.lxb.bean.PermissionInfo;
-import com.lxb.util.LogsUtil;
 import com.lxb.util.PackageUtil;
 
 /**
@@ -27,6 +29,9 @@ import com.lxb.util.PackageUtil;
  * @author LXB
  */
 public class RouteConfig {
+
+	private static Logger log = LoggerFactory.getLogger(RouteConfig.class);
+
 	private static final String PACK_CONTROLLER_PATH = "com.lxb.controller";
 	public static int MOBILE_NODE_ID = 90000;// 移动菜单的顶级节点,PC版不可见
 	public static final Map<String, PermissionInfo> levelAuth = new TreeMap<String, PermissionInfo>();
@@ -38,7 +43,7 @@ public class RouteConfig {
 	public static void init(Routes routes) throws Exception {
 		List<String> controllerPackages = Arrays
 				.asList(PACK_CONTROLLER_PATH.split(","));
-		LogsUtil.info(RouteBind.class,"路由和权限设置开始...");
+		log.info("路由和权限设置开始...");
 		for (int i = 0; i < controllerPackages.size(); i++) {
 			Set<Class<?>> classSet = PackageUtil
 					.getClasses(controllerPackages.get(i));
@@ -143,8 +148,8 @@ public class RouteConfig {
 				}
 			}
 		}
-		LogsUtil.info(RouteBind.class,"路由和权限设置结束!");
-		LogsUtil.info(RouteBind.class,"处理系统菜单和权限结构...");
+		log.info("路由和权限设置结束!");
+		log.info("处理系统菜单和权限结构...");
 		for (String nodeId : levelAuth.keySet()) {
 			PermissionInfo node = levelAuth.get(nodeId);
 			List<PermissionInfo> nodeSubMenuList = node.getSubPermission();
@@ -177,8 +182,8 @@ public class RouteConfig {
 						});
 			}
 		}
-		LogsUtil.info(RouteBind.class,"处理系统菜单和权限结构完毕...");
-		LogsUtil.info(RouteBind.class,"系统菜单和权限最终结构:");
-		LogsUtil.info(RouteBind.class,JSONObject.toJSONString(levelAuth));
+		log.info("处理系统菜单和权限结构完毕...");
+		log.info("系统菜单和权限最终结构:");
+		log.info(JSONObject.toJSONString(levelAuth));
 	}
 }

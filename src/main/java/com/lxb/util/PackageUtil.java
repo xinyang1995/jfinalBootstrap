@@ -12,6 +12,9 @@ import java.util.Set;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 /**
  * 包处理工具
  * 
@@ -19,6 +22,8 @@ import java.util.jar.JarFile;
  * @author LXB
  */
 public class PackageUtil {
+
+	private static Logger log = LoggerFactory.getLogger(PackageUtil.class);
 
 	/**
 	 * 从包package中获取所有的Class
@@ -48,7 +53,7 @@ public class PackageUtil {
 				String protocol = url.getProtocol();
 				// 如果是以文件的形式保存在服务器上
 				if ("file".equals(protocol)) {
-					LogsUtil.info(PackageUtil.class,"file类型的扫描");
+					log.info("file类型的扫描");
 					// 获取包的物理路径
 					String filePath = URLDecoder.decode(url.getFile(), "UTF-8");
 					// 以文件的方式扫描整个包下的文件 并添加到集合中
@@ -57,7 +62,7 @@ public class PackageUtil {
 				} else if ("jar".equals(protocol)) {
 					// 如果是jar包文件
 					// 定义一个JarFile
-					LogsUtil.info(PackageUtil.class,"jar类型的扫描");
+					log.info("jar类型的扫描");
 					JarFile jar;
 					try {
 						// 获取jar
@@ -109,13 +114,13 @@ public class PackageUtil {
 							}
 						}
 					} catch (IOException e) {
-						LogsUtil.error(PackageUtil.class,"在扫描用户定义视图时从jar包获取文件出错");
+						log.error("在扫描用户定义视图时从jar包获取文件出错");
 						e.printStackTrace();
 					}
 				}
 			}
 		} catch (IOException e) {
-			LogsUtil.error(PackageUtil.class,"获取包出错");
+			log.error("获取包出错");
 			e.printStackTrace();
 		}
 
@@ -168,7 +173,7 @@ public class PackageUtil {
 					classes.add(Thread.currentThread().getContextClassLoader()
 							.loadClass(packageName + '.' + className));
 				} catch (ClassNotFoundException e) {
-					LogsUtil.error(PackageUtil.class,"添加用户自定义视图类错误 找不到此类的.class文件");
+					log.error("添加用户自定义视图类错误 找不到此类的.class文件");
 					e.printStackTrace();
 				}
 			}

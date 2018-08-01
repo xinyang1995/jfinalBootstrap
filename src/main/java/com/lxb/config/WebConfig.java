@@ -9,6 +9,9 @@ import java.sql.SQLException;
 import java.util.Date;
 import java.util.Enumeration;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.jfinal.config.Constants;
 import com.jfinal.config.Handlers;
 import com.jfinal.config.Interceptors;
@@ -21,14 +24,14 @@ import com.jfinal.plugin.activerecord.ActiveRecordPlugin;
 import com.jfinal.plugin.druid.DruidPlugin;
 import com.jfinal.render.ViewType;
 import com.jfinal.template.Engine;
-import com.lxb.annotation.RouteBind;
 import com.lxb.entity.SysGroup;
 import com.lxb.entity.SysUser;
 import com.lxb.interceptor.GlobalInterceptor;
-import com.lxb.util.LogsUtil;
 import com.lxb.util.MD5Util;
 
 public class WebConfig extends JFinalConfig {
+
+	private static Logger log = LoggerFactory.getLogger(JFinalConfig.class);
 
 	@Override
 	public void configConstant(Constants constants) {
@@ -131,7 +134,7 @@ public class WebConfig extends JFinalConfig {
 			RouteConfig.init(routes);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
-			LogsUtil.error(WebConfig.class,"路由设置出错...", e);
+			log.error("路由设置出错...", e);
 		}
 
 	}
@@ -143,14 +146,14 @@ public class WebConfig extends JFinalConfig {
 	 */
 	@Override
 	public void afterJFinalStart() {
-		LogsUtil.info(WebConfig.class,"JFinal启动完毕...");
-		LogsUtil.info(WebConfig.class,"系统启动完成...");
-		LogsUtil.info(WebConfig.class,"初始化系统用户...");
+		log.info("JFinal启动完毕...");
+		log.info("系统启动完成...");
+		log.info("初始化系统用户...");
 		SysUser admin = SysUser.dao
 				.findFirst("select * from sys_user where userName = 'admin'");
 		if (null == admin) {
-			LogsUtil.info(WebConfig.class,"不存在admin超级用户...");
-			LogsUtil.info(WebConfig.class,"新增超级用户admin...");
+			log.info("不存在admin超级用户...");
+			log.info("新增超级用户admin...");
 			admin = new SysUser();
 			admin.set("groupId", SysGroup.GROUP_SUPER_ADMIN);
 			admin.set("userName", "admin");
@@ -161,9 +164,9 @@ public class WebConfig extends JFinalConfig {
 			admin.set("status", SysUser.STATUS_NORMAL);
 			admin.save();
 		} else {
-			LogsUtil.info(WebConfig.class,"已经存在admin超级用户...");
+			log.info("已经存在admin超级用户...");
 		}
-		LogsUtil.info(WebConfig.class,"初始化系统用户admin完毕...");
+		log.info("初始化系统用户admin完毕...");
 	}
 
 	@Override
