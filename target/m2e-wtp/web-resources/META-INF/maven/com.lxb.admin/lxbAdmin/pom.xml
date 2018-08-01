@@ -1,0 +1,107 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.lxb.admin</groupId>
+  <artifactId>lxbAdmin</artifactId>
+  <packaging>war</packaging>
+  <version>0.0.1-SNAPSHOT</version>
+  <name>lxbAdmin Maven Webapp</name>
+  <url>http://maven.apache.org</url>
+  
+  <dependencies>
+  	
+  	<!-- 单元测试 -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <!-- JFinal相关依赖 -->
+    <dependency>
+	    <groupId>com.jfinal</groupId>
+	    <artifactId>jfinal</artifactId>
+	    <version>3.3</version>
+	</dependency>
+	<!-- JFinal上传包 -->
+	<dependency>
+	    <groupId>com.jfinal</groupId>
+	    <artifactId>cos</artifactId>
+	    <version>2017.5</version>
+	</dependency>
+	
+	<!-- 阿里巴巴数据连接池 -->
+	<dependency>
+	    <groupId>com.alibaba</groupId>
+	    <artifactId>druid</artifactId>
+	    <version>1.1.9</version>
+	</dependency>
+	
+	<!-- mysql驱动 -->
+	<dependency>
+	    <groupId>mysql</groupId>
+	    <artifactId>mysql-connector-java</artifactId>
+	    <version>5.1.46</version>
+	</dependency>
+	
+	<!-- servlet标准 -->
+	<dependency>
+	    <groupId>javax.servlet</groupId>
+	    <artifactId>javax.servlet-api</artifactId>
+	    <version>4.0.0</version>
+	    <scope>provided</scope>
+	</dependency>
+	
+	<!-- log4j依赖 -->
+	<dependency>
+	    <groupId>log4j</groupId>
+	    <artifactId>log4j</artifactId>
+	    <version>1.2.17</version>
+	</dependency>
+   <dependency>
+		<groupId>org.slf4j</groupId>
+		<artifactId>slf4j-log4j12</artifactId>
+		<version>1.6.6</version>
+	</dependency> 
+	
+	<!-- alibaba json包 -->
+	<dependency>
+	    <groupId>com.alibaba</groupId>
+	    <artifactId>fastjson</artifactId>
+	    <version>1.2.47</version>
+	</dependency>
+	
+	<!-- freemarker依赖包 -->
+	<dependency>
+	    <groupId>org.freemarker</groupId>
+	    <artifactId>freemarker</artifactId>
+	    <version>2.3.28</version>
+	</dependency>
+	
+	<!-- 压缩图片工具 -->
+	<dependency>
+	  <groupId>com.tinify</groupId>
+	  <artifactId>tinify</artifactId>
+	  <version>RELEASE</version>
+	</dependency>
+    
+  </dependencies>
+  <build>
+  
+  	 <plugins>  
+        <!-- define the project compile level -->  
+        <plugin>  
+            <groupId>org.apache.maven.plugins</groupId>  
+            <artifactId>maven-compiler-plugin</artifactId>  
+            <version>2.3.2</version>  
+            <configuration>  
+                <source>1.8</source>  
+                <target>1.8</target>  
+            </configuration>  
+        </plugin>  
+    </plugins>  
+  
+    <finalName>lxbAdmin</finalName>
+  </build>
+</project>
