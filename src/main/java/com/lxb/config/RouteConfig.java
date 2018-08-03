@@ -33,7 +33,6 @@ public class RouteConfig {
 	private static Logger log = LoggerFactory.getLogger(RouteConfig.class);
 
 	private static final String PACK_CONTROLLER_PATH = "com.lxb.controller";
-	public static int MOBILE_NODE_ID = 90000;// 移动菜单的顶级节点,PC版不可见
 	public static final Map<String, PermissionInfo> levelAuth = new TreeMap<String, PermissionInfo>();
 	public static final Map<String, PermissionInfo> allAuth = new HashMap<String, PermissionInfo>();
 	public static final Set<String> checkControllerKey = new HashSet<String>();

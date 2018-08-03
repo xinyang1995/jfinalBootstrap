@@ -42,9 +42,9 @@ public class WebConfig extends JFinalConfig {
 		// jfinal支持很多类型的页面，这里设置为FreeMarker
 		constants.setViewType(ViewType.FREE_MARKER);
 		// 自定义404页面
-		constants.setError404View("WEB-INF/template/404.html");
+		constants.setError404View("404.html");
 		// 自定义500页面
-		constants.setError500View("WEB-INF/template/500.html");
+		constants.setError500View("500.html");
 		// 配置下载文件路径
 		constants.setBaseDownloadPath("download");
 		// 配置上传文件路径
