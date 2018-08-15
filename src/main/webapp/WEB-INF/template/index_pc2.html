@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+        <meta name="format-detection" content="telephone=no">
+        <meta charset="UTF-8">
+
+        <meta name="description" content="Violate Responsive Admin Template">
+        <meta name="keywords" content="Super Admin, Admin, Template, Bootstrap">
+
+		<#include "/WEB-INF/template/common/common_header.html">
+		<#include "/WEB-INF/template/index_pc/index_header.html">
+	    
+        <title>万事屋后台管理系统</title>
+            
+    </head>
+    <body><!-- id="skin-blur-Starry" -->
+		
+       <!--  <header id="header" class="media">
+            <a href="" id="menu-toggle"></a> 
+			
+            <a class="logo pull-left">超级管理员</a>
+            
+            <div class="media-body">
+                <div class="media" id="top-menu" style="float: right;">
+                    <div class="pull-left tm-icon">
+                        <a data-drawer="messages" class="drawer-toggle" href="">
+                            <i class="sa-top-message" style="color: black;"></i>
+                            <i class="n-count animated">5</i>
+                            <span>用户意见</span>
+                        </a>
+                    </div>
+                    <div class="pull-left tm-icon">
+                        <a data-drawer="notifications" class="drawer-toggle" href="">
+                            <i class="sa-top-updates"></i>
+                            <i class="n-count animated">9</i>
+                            <span>待审核内容</span>
+                        </a>
+                    </div>
+
+                    <div class="media-body">
+                        <input type="text" class="main-search">
+                    </div>
+                    
+                    <div id="time" style="color: white;"></div>
+                    
+                    <div class="pull-left tm-icon">
+                       <a data-drawer="notifications" class="drawer-toggle" href="javascript:void(0);">
+	                        <img style="width: 40px;height: 40px;margin-top: 4px;margin-right: 5px;" class="img-circle" src="${base}/images/index_pc/profile-pic.jpg" alt="">
+	                        <span data-toggle="modal" data-target="#modifyPassModal" style="color: red;">修改密码</span>
+	                        <span id="logout" style="color: red;">退出</span>
+                       </a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        
+        <div class="clearfix"></div>
+        
+        <section id="main" class="p-relative" role="main">
+            
+            Sidebar
+            <aside id="sidebar">
+                
+                Sidbar Widgets
+                <div class="side-widgets overflow">
+                    Profile Menu
+                    <div class="text-center s-widget m-b-25 dropdown" id="profile-menu">
+                        <img class="profile-pic animated" src="${base}/images/index_pc/profile-pic.jpg" alt="">
+                        <h4 class="m-0">1595097047</h4>
+                        @qq.com
+                    </div>
+                    
+                    Calendar
+                    <div class="s-widget m-b-25">
+                        <div id="sidebar-calendar"></div>
+                    </div>
+                    
+                    <div class="s-widget m-b-25">
+                        <h2 class="tile-title">
+                           	今日热点
+                        </h2>
+                        
+                        <div class="s-widget-body">
+                            <div id="news-feed"></div>
+                        </div>
+                    </div>
+                    
+                    Projects
+                    <div class="s-widget m-b-25">
+                        <h2 class="tile-title">
+                            	正在开发的任务
+                        </h2>
+                        
+                        <div class="s-widget-body">
+                            <div class="side-border">
+                                <small>Joomla Website</small>
+                                <div class="progress progress-small">
+                                     <a href="#" data-toggle="tooltip" title="" class="progress-bar tooltips progress-bar-danger" style="width: 60%;" data-original-title="60%">
+                                          <span class="sr-only">60% Complete</span>
+                                     </a>
+                                </div>
+                            </div>
+                            <div class="side-border">
+                                <small>Opencart E-Commerce Website</small>
+                                <div class="progress progress-small">
+                                     <a href="#" data-toggle="tooltip" title="" class="tooltips progress-bar progress-bar-info" style="width: 43%;" data-original-title="43%">
+                                          <span class="sr-only">43% Complete</span>
+                                     </a>
+                                </div>
+                            </div>
+                            <div class="side-border">
+                                <small>Social Media API</small>
+                                <div class="progress progress-small">
+                                     <a href="#" data-toggle="tooltip" title="" class="tooltips progress-bar progress-bar-warning" style="width: 81%;" data-original-title="81%">
+                                          <span class="sr-only">81% Complete</span>
+                                     </a>
+                                </div>
+                            </div>
+                            <div class="side-border">
+                                <small>VB.Net Software Package</small>
+                                <div class="progress progress-small">
+                                     <a href="#" data-toggle="tooltip" title="" class="tooltips progress-bar progress-bar-success" style="width: 10%;" data-original-title="10%">
+                                          <span class="sr-only">10% Complete</span>
+                                     </a>
+                                </div>
+                            </div>
+                            <div class="side-border">
+                                <small>Chrome Extension</small>
+                                <div class="progress progress-small">
+                                     <a href="#" data-toggle="tooltip" title="" class="tooltips progress-bar progress-bar-success" style="width: 95%;" data-original-title="95%">
+                                          <span class="sr-only">95% Complete</span>
+                                     </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+               
+                Side Menu
+                <ul class="list-unstyled side-menu" style="background: black;">
+                	左侧菜单栏
+                	<#if navs??>
+                		<#assign text>${navs}</#assign>
+                		<#assign json=text?eval /> 
+						<#list json as menu>
+							 <li class="active" style="margin-top: 10px;">
+		                       <a class="${menu.icon}" style="line-height: inherit;">
+		                       		<span class="menu-item">${menu.title}</span>
+		                       </a>
+		                       <#if (menu.children)??>
+		                       		<#assign chlidrenJson=menu.children /> 
+			                        <ul class="list-unstyled menu-item">
+			                        	<#list chlidrenJson as childrenMenu>
+			                            <li>
+			                            	&nbsp;&nbsp;<a class="${childrenMenu.icon} menu" href="javascript:void(0);" value="${childrenMenu.href}">&nbsp;${childrenMenu.title}</a>
+			                            </li>
+			                            </#list>
+			                        </ul>
+		                       </#if>
+		                    </li>
+						</#list>
+					</#if>
+                </ul>
+                <#include "/WEB-INF/template/index_pc/index_menu.html">
+            </aside>
+        
+            Content
+            <section id="content" class="container">
+                    <iframe src="${base}/main" width="100%" frameborder="no" height="500px;"></iframe>
+            </section>
+
+        </section>
+        
+        <div class="modal fade" id="modifyPassModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+		    <div class="modal-dialog">
+		        <div class="modal-content">
+		            <div class="modal-header">
+		            	<h4 class="modal-title" id="myModalLabel">修改密码</h4>
+		                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		            </div>
+		            <div class="input-group">
+			            <span class="input-group-addon glyphicon glyphicon-lock"></span>
+			            <input type="text" id="oldPass" class="form-control" placeholder="旧密码">
+			        </div>
+			        <br>
+			        <div class="input-group">
+			            <span class="input-group-addon glyphicon glyphicon-lock"></span>
+			            <input type="text" id="newPass" class="form-control" placeholder="新密码">
+			        </div>
+			        <br>
+			        <div class="input-group">
+			            <span class="input-group-addon glyphicon glyphicon-lock"></span>
+			            <input type="text" id="confirmPass" class="form-control" placeholder="确认密码">
+			        </div>
+		            <div class="modal-footer">
+		                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+		                <button type="button" id="modifyPass" class="btn btn-primary">提交更改</button>
+		            </div>
+		        </div>/.modal-content
+		    </div>/.modal
+		</div> -->
+        <div id="wrapper" class="container-fluid">
+        <#include "/WEB-INF/template/index_pc/index_munu.html">
+        <div id="page-wrapper">
+            <div class="container-fluid">Index1</div>
+            <!-- /.container-fluid -->
+        </div>
+    </div>
+    </body>
+    <script>
+    
+    	/**   * 垂直居中模态框   **/ 
+    	function centerModals() {    
+    		$('.modal').each(function(i) {      
+    			var $clone = $(this).clone().css('display', 'block').appendTo('body');      
+    			var top = Math.round(($clone.height() - $clone.find('.modal-content').height()) / 2);      
+    			top = top > 50 ? top : 0;      
+    			$clone.remove();      
+    			$(this).find('.modal-content').css("margin-top", top - 50);    });  }  
+    	// 在模态框出现的时候调用垂直居中方法  
+    	$('.modal').on('show.bs.modal', centerModals);  
+    	// 在窗口大小改变的时候调用垂直居中方法  
+    	$(window).on('resize', centerModals);
+    
+	    //退出登录
+		$('#logout').click(function(){
+			$.ajax({
+		       url:"${base}/logout",
+		       type:"post",
+		       dataType:"json",
+		       data:"",
+		       success:function(data){
+		          if(data.status == 1) {
+		        	//退出成功
+		             window.location.href=window.location.href;
+			       }else{
+		        	//退出失败
+		        	alert("登陆失败，请重新登陆");
+		          }
+		       }
+		    });
+		})
+		
+		//修改密码
+		$('#modifyPass').click(function(){
+			var oldPass=$('#oldPass').val();
+			var newPass=$('#newPass').val();
+			var confirmPass=$('#confirmPass').val();
+			if(oldPass==""||newPass==""||confirmPass==""){
+				alert("输入不能为空！");
+				return;
+			}
+			if(newPass!=confirmPass){
+				alert("确认密码不一致！");
+				return;
+			}
+			
+			var data={
+					"oldPass":oldPass,
+					"newPass":newPass,
+					"confirmPass":confirmPass,
+			}
+			
+			$.ajax({
+		       url:"${base}/modifyPass",
+		       type:"post",
+		       dataType:"json",
+		       data:data,
+		       success:function(data){
+		          if(data.status == 1) {
+		        	//修改成功
+		        	alert("密码修改成功！")
+		             window.location.href=window.location.href;
+			       }else{
+		        	//修改失败
+		        	alert("密码修改失败！");
+		          }
+		       }
+	    	});
+	
+		}); 
+    
+		//动态获取时间
+		/* function showTime(){
+		    nowtime=new Date();
+		    year=nowtime.getFullYear();
+		    month=nowtime.getMonth()+1;
+		    date=nowtime.getDate();
+		    document.getElementById("time").innerText=year+"年"+month+"月"+date+" "+nowtime.toLocaleTimeString('chinese', { hour12: false });
+		}
+		setInterval("showTime()",1000); */
+
+    </script>
+    
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>首页</title>
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+		
+		<script src="${base}/js/common/common_other_header.js"></script>
+	</head>
+
+	<body>
+	
+		<form class="form-inline" role="form" style="margin-top: 30px;">
+		  <div class="form-group">
+		    <input type="text" class="form-control" id="name" placeholder="请输入名称">
+		    <button type="button" class="btn btn-primary" id="myButton4" 
+			    data-complete-text="Loading finished"><li class="glyphicon glyphicon-search"></li>&nbsp;&nbsp;搜索
+			</button>
+		  </div>
+		  <div class="form-group" style="float: right;">
+		    <button type="button" class="btn btn-primary" id="myButton4" 
+			    data-complete-text="Loading finished"><li class="glyphicon glyphicon-plus"></li>&nbsp;&nbsp;添加用户
+			</button>
+		  </div>
+		</form>
+		<fieldset style="margin-top: 50px;">
+		<table class="table table-bordered" style="width: 100%;">
+			<legend>系统用户</legend>
+			<thead>
+				<tr>
+					<th>产品</th>
+					<th>付款日期</th>
+					<th>状态</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr class="active">
+					<td>产品1</td>
+					<td>23/11/2013</td>
+					<td>待发货</td>
+				</tr>
+				<tr class="success">
+					<td>产品2</td>
+					<td>10/11/2013</td>
+					<td>发货中</td>
+				</tr>
+				<tr  class="warning">
+					<td>产品3</td>
+					<td>20/10/2013</td>
+					<td>待确认</td>
+				</tr>
+				<tr  class="danger">
+					<td>产品4</td>
+					<td>20/10/2013</td>
+					<td>已退货</td>
+				</tr>
+			</tbody>
+		</table>
+		</fieldset>
+	</body>
+	
+	 <script src="${base}/js/common/common_other_footer.js"></script>
+	
+</html>

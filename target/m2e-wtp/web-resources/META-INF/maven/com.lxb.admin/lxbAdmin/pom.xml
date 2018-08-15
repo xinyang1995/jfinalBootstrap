@@ -85,6 +85,13 @@
 	  <artifactId>tinify</artifactId>
 	  <version>RELEASE</version>
 	</dependency>
+	
+	<!-- Base64编码相关依赖 -->
+	<dependency>
+		<groupId>commons-codec</groupId>
+		<artifactId>commons-codec</artifactId>
+		<version>1.10</version>
+	</dependency>
     
   </dependencies>
   <build>
